@@ -1,7 +1,7 @@
 cljfmt
 ======
 
-[![CircleCI](https://circleci.com/gh/amperity/cljfmt.svg?style=shield&circle-token=9576040ebe39e81406823481c98dc55a39d03c4d)](https://circleci.com/gh/amperity/cljfmt)
+[![CircleCI](https://circleci.com/gh/amperity/cljfmt/tree/master.svg?style=shield)](https://circleci.com/gh/amperity/cljfmt)
 [![codecov](https://codecov.io/gh/amperity/cljfmt/branch/master/graph/badge.svg)](https://codecov.io/gh/amperity/cljfmt)
 
 cljfmt is a tool for formatting Clojure code.
