@@ -7,11 +7,11 @@
 
   :plugins
   [[lein-cljsbuild "1.1.2"]
-   [lein-cloverage "1.0.10"]]
+   [lein-cloverage "1.0.13"]]
 
   :dependencies
   [[org.clojure/clojure "1.8.0"]
-   [org.clojure/tools.reader "1.0.0-alpha4"]
+   [org.clojure/tools.reader "1.3.0"]
    [rewrite-clj "0.5.2"]
    [rewrite-cljs "0.4.3"]]
 
@@ -25,7 +25,7 @@
                                  :target :nodejs
                                  :optimizations :none}}}
               :test-commands
-              {"dev" ["nodejs" "target/out/tests.js"]}}
+              {"dev" ["node" "target/out/tests.js"]}}
 
   :profiles
   {:provided
