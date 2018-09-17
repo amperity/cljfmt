@@ -15,8 +15,6 @@
    [rewrite-clj "0.5.2"]
    [rewrite-cljs "0.4.3"]]
 
-  :hooks [leiningen.cljsbuild]
-
   :cljsbuild {:builds
               {"dev" {:source-paths ["src" "test"]
                       :compiler {:main cljfmt.test-runner
@@ -25,7 +23,7 @@
                                  :target :nodejs
                                  :optimizations :none}}}
               :test-commands
-              {"dev" ["node" "target/out/tests.js"]}}
+              {"dev" ["nodejs" "target/out/tests.js"]}}
 
   :profiles
   {:provided

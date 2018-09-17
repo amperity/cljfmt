@@ -24,6 +24,9 @@ jobs:
           command: lein test
           pwd: cljfmt
       - run:
+          command: lein cljsbuild test
+          pwd: cljfmt
+      - run:
           command: lein cloverage --codecov
           pwd: cljfmt
       - save_cache:
