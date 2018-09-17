@@ -1,6 +1,6 @@
-(defproject mvxcvi/cljfmt "0.7.0-SNAPSHOT"
+(defproject amperity/cljfmt "0.7.0-SNAPSHOT"
   :description "A library for formatting Clojure code"
-  :url "https://github.com/greglook/cljfmt"
+  :url "https://github.com/amperity/cljfmt"
   :scm {:dir ".."}
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
