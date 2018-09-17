@@ -1,6 +1,8 @@
-# cljfmt
+cljfmt
+======
 
-[![Build Status](https://travis-ci.org/weavejester/cljfmt.svg?branch=master)](https://travis-ci.org/weavejester/cljfmt)
+[![CircleCI](https://circleci.com/gh/amperity/cljfmt/tree/master.svg?style=shield)](https://circleci.com/gh/amperity/cljfmt)
+[![codecov](https://codecov.io/gh/amperity/cljfmt/branch/master/graph/badge.svg)](https://codecov.io/gh/amperity/cljfmt)
 
 cljfmt is a tool for formatting Clojure code.
 
@@ -22,18 +24,16 @@ Into nicely formatted Clojure code like this:
   (+ (* x x) (* y y)))
 ```
 
+
 ## Installation
 
-The easiest way to get started with cljfmt is to add the lein-cljfmt
-plugin to your [Leiningen](https://github.com/technomancy/leiningen) project
-map:
+Library releases are published on Clojars. To use the latest version with
+Leiningen, add the following plugin to your project definition:
 
 ```clojure
-:plugins [[lein-cljfmt "0.5.6"]]
+[amperity/lein-cljfmt "0.7.0-SNAPSHOT"]
 ```
 
-cljfmt has tested on Leiningen 2.5, but may not work on older
-versions, particularly versions prior to Leiningen 2.4.
 
 ## Usage
 
@@ -58,10 +58,12 @@ As with the `check` task, you can choose to fix a specific file:
 
     lein cljfmt fix src/foo/core.clj
 
+
 ## Editor Support
 
 * [vim-cljfmt](https://github.com/venantius/vim-cljfmt)
 * [CIDER 0.9+](https://github.com/clojure-emacs/cider)
+
 
 ## Configuration
 
@@ -258,7 +260,10 @@ or preceeded by the discard macro `#_`. You can also optionally disable
 formatting rules from matching a form by tagging it with `^:cljfmt/ignore`
 metadata.
 
+
 ## License
+
+<!-- TODO: how to adapt this copyright? -->
 
 Copyright © 2016 James Reeves
 

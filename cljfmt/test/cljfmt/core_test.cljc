@@ -109,8 +109,14 @@
            (reformat-string "#(while true\n(println :foo))")))
     (is (= "#(reify Closeable\n   (close [_]\n     (prn %)))"
            (reformat-string "#(reify Closeable\n(close [_]\n(prn %)))")))
-    (is (= "(mapv\n  #(vector\n    {:foo %\n     :bar 123}\n    %)\n  xs)"
-           (reformat-string "(mapv\n #(vector\n {:foo %\n  :bar 123}\n       %)\nxs)"))))
+    (is (= "(mapv\n  #(vector\n     {:foo %\n      :bar 123}\n     %)\n  xs)"
+           (reformat-string "(mapv\n #(vector\n {:foo %\n  :bar 123}\n       %)\nxs)")))
+    (is (= "#(foo\n   bar\n   baz)"
+           (reformat-string "#(foo\nbar\nbaz)")))
+    (is (= "#(foo bar\n      baz)"
+           (reformat-string "#(foo bar\nbaz)")))
+    (is (= "#(foo bar\n   baz)"
+           (reformat-string "#(foo bar\nbaz)" '{:indents {foo [[:block 1]]}}))))
 
   (testing "comments"
     (is (= ";foo\n(def x 1)"
@@ -132,7 +138,9 @@
     (is (= "(def ^:private\n  foo\n  :foo)"
            (reformat-string "(def ^:private\nfoo\n:foo)")))
     (is (= "(def ^:private foo\n  :foo)"
-           (reformat-string "(def ^:private foo\n:foo)"))))
+           (reformat-string "(def ^:private foo\n:foo)")))
+    (is (= "^:a\n:bcd"
+           (reformat-string "^\n:a\n:bcd"))))
 
   (testing "ignored forms"
     (is (= "^:cljfmt/ignore\n(def x\n 123\n  456)"
@@ -168,7 +176,15 @@
     (is (= "#?(:clj foo\n   :cljs bar)"
            (reformat-string "#?(:clj foo\n:cljs bar)")))
     (is (= "#?@(:clj foo\n    :cljs bar)"
-           (reformat-string "#?@(:clj foo\n:cljs bar)")))))
+           (reformat-string "#?@(:clj foo\n:cljs bar)"))))
+
+  (testing "reader macros"
+    (is (= "#inst\n\"2018-01-01T00:00:00.000-00:00\""
+           (reformat-string "#inst\n\"2018-01-01T00:00:00.000-00:00\""))))
+
+  (testing "map prefixes"
+    (is (= "#:abc\n{:d 1}"
+           (reformat-string "#:abc\n{:d 1}")))))
 
 
 (deftest function-forms

@@ -1,0 +1,41 @@
+version: 2
+
+jobs:
+  build:
+    working_directory: ~/repo
+    docker:
+      - image: circleci/clojure:lein-2.7.1
+    steps:
+      - run:
+          name: Install NodeJS
+          command: sudo apt-get update && sudo apt-get install -y nodejs
+      - checkout
+      - restore_cache:
+          keys:
+            - cljfmt-{{ checksum "cljfmt/project.clj" }}
+            - cljfmt-
+      - run:
+          command: lein deps
+          pwd: cljfmt
+      - run:
+          command: lein check
+          pwd: cljfmt
+      - run:
+          command: lein test
+          pwd: cljfmt
+      - run:
+          command: lein cljsbuild test
+          pwd: cljfmt
+      - run:
+          command: lein cloverage --codecov
+          pwd: cljfmt
+      - save_cache:
+          paths:
+            - ~/.m2
+          key: cljfmt-{{ checksum "cljfmt/project.clj" }}
+      - store_artifacts:
+          path: cljfmt/target/coverage
+          destination: coverage
+      - run:
+          name: Publish Coverage
+          command: "(curl -s https://codecov.io/bash > codecov) && bash codecov -f cljfmt/target/coverage/codecov.json"

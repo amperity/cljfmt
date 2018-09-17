@@ -125,7 +125,11 @@
   [zloc]
   (if (and (some-> zloc zip/leftmost zip/right zl/skip-whitespace zl/zlinebreak?)
            (-> zloc z/leftmost z/tag (= :token)))
-    (+ (-> zloc zip/up margin) indent-size)
+    (+ (-> zloc zip/up margin)
+       indent-size
+       (if (= :fn (-> zloc z/up z/tag))
+         1
+         0))
     (if (> (index-of zloc) 1)
       (-> zloc zip/leftmost z/right margin)
       (coll-indent zloc))))
@@ -196,7 +200,7 @@
         (coll-indent zloc)
       (#{:list :fn} tag)
         (custom-indent zloc indents)
-      (= :meta tag)
+      (#{:meta :meta* :reader-macro} tag)
         (indent-amount (z/up zloc) indents)
       :else
         (coll-indent zloc))))
