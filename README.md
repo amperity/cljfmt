@@ -1,8 +1,8 @@
 cljfmt
 ======
 
-[![CircleCI](https://circleci.com/gh/greglook/cljfmt.svg?style=shield&circle-token=9576040ebe39e81406823481c98dc55a39d03c4d)](https://circleci.com/gh/greglook/cljfmt)
-[![codecov](https://codecov.io/gh/greglook/cljfmt/branch/master/graph/badge.svg)](https://codecov.io/gh/greglook/cljfmt)
+[![CircleCI](https://circleci.com/gh/amperity/cljfmt.svg?style=shield&circle-token=9576040ebe39e81406823481c98dc55a39d03c4d)](https://circleci.com/gh/amperity/cljfmt)
+[![codecov](https://codecov.io/gh/amperity/cljfmt/branch/master/graph/badge.svg)](https://codecov.io/gh/amperity/cljfmt)
 
 cljfmt is a tool for formatting Clojure code.
 
@@ -30,7 +30,9 @@ Into nicely formatted Clojure code like this:
 Library releases are published on Clojars. To use the latest version with
 Leiningen, add the following plugin to your project definition:
 
-[![Clojars Project](http://clojars.org/mvxcvi/lein-cljfmt/latest-version.svg)](http://clojars.org/mvxcvi/lein-cljfmt)
+```clojure
+[amperity/lein-cljfmt "0.7.0-SNAPSHOT"]
+```
 
 
 ## Usage
