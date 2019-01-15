@@ -24,15 +24,15 @@
   (testing "cond indentation"
     (is (= "(cond\n  a? a\n  b? b)"
            (reformat-string "(cond  \na? a\n   b? b)")))
-    (is (= "(cond\n  a?\n    a\n  b?\n    b)"
+    (is (= "(cond\n  a?\n  a\n  b?\n  b)"
            (reformat-string "(cond  \na?\n a\nb?\n  b)")))
-    (is (= "(condp = (:k x)\n  a?\n    a\n  b?\n    b)"
+    (is (= "(condp = (:k x)\n  a?\n  a\n  b?\n  b)"
            (reformat-string "(condp = (:k x)\n a?\n a\nb?\n  b)")))
     (is (= "(cond->\n  a? (a 123)\n  b? (b true))"
            (reformat-string "(cond->  \n  a? (a 123)\n  b? (b true))")))
-    (is (= "(cond->\n  a?\n    (a 123)\n  b?\n    (b true))"
+    (is (= "(cond->\n  a?\n  (a 123)\n  b?\n  (b true))"
            (reformat-string "(cond->\n  a?\n(a 123)\n  b?\n(b true))")))
-    (is (= "(cond-> x\n  a?\n    (a 123)\n  b?\n    (b true))"
+    (is (= "(cond-> x\n  a?\n  (a 123)\n  b?\n  (b true))"
            (reformat-string "(cond-> x \n  a?\n(a 123)\n  b?\n(b true))")))
     (is (= "(cond->> x\n  a? a\n  b? b)"
            (reformat-string "(cond->> x\na? a\nb? b)"))))
@@ -202,60 +202,60 @@
     (is (= "(ns foo.bar.baz\n  \"ns-level docstring\"\n  (:require\n    [foo.bar.qux :refer :all]))"
            (reformat-string "(ns foo.bar.baz\n \"ns-level docstring\"\n (:use foo.bar.qux)\n)")))
     (is (=
-"(ns foo.bar
+         "(ns foo.bar
   \"Functions for working with bars.\"
   (:refer-clojure :exclude [keys])
   (:require
     [clojure.spec :as s]
     [clojure.string :as str]))"
          (reformat-string
-"(ns foo.bar
+          "(ns foo.bar
   \"Functions for working with bars.\"
   (:refer-clojure :exclude [keys])
   (:require [clojure.string :as str]
-            [clojure.spec :as s]))"
-)))
+            [clojure.spec :as s]))")))
+
     (is (=
-"(ns abc.def
+         "(ns abc.def
   (:require
     [clojure.string]))"
          (reformat-string "(ns abc.def (:load clojure.string))")))
     (is (=
-"(ns abc.def
+         "(ns abc.def
   (:gen-class))"
          (reformat-string "(ns abc.def (:gen-class))")))
     (is (=
-"(ns abc.def
+         "(ns abc.def
   (:require
     [abc.nop]
     [abc.qrs]))"
          (reformat-string "(ns abc.def (:require (abc qrs nop)))")))
     (is (=
-"(ns abc.xyz
+         "(ns abc.xyz
   (:require
     [abc.def :as def]
     [clojure.pprint :refer [pp]]
     [clojure.set :as set]
     [clojure.string :as str]))"
          (reformat-string
-"(ns abc.xyz (:require (clojure [set :as set]
+          "(ns abc.xyz (:require (clojure [set :as set]
 [string :as str]
 [pprint :refer [pp]]) [abc.def :as def]))")))
     (is (=
-"(ns abc.xyz
+         "(ns abc.xyz
   (:require
     ; about def
     [abc.def :as def]
     ; about set
     [clojure.set :as set]))"
          (reformat-string
-"(ns abc.xyz (:require
+          "(ns abc.xyz (:require
   (clojure ; about set
     [set :as set])
   ; about def
   [abc.def :as def]))")))
     (is (=
-"(ns foo.bar
+         "(ns foo.bar
   (:import
     (java.io
       IOException
@@ -263,7 +263,7 @@
       OutputStream)
     java.time.Instant))"
          (reformat-string
-"(ns foo.bar (:import java.io.IOException
+          "(ns foo.bar (:import java.io.IOException
  (java.io
    OutputStream InputStream)
   java.time.Instant
