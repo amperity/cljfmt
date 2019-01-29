@@ -233,12 +233,12 @@ But indents at a constant two spaces otherwise:
 
 #### Cond rules
 
-A `:cond` rule is similar to `:block`, except that it tries to indent
+A `:stair` rule is similar to `:block`, except that it tries to indent
 test/expression clauses as pairs. The expression forms will be given an extra
 level of indentation if they are on their own line:
 
 ```clojure
-{cond [[:cond 0]]}
+{cond [[:stair 0]]}
 ```
 
 ```clojure
